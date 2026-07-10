@@ -10,6 +10,11 @@
       "name": "aws-sam",
       "description": "Guidance for scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects.",
       "source": "./plugins/aws-sam"
+    },
+    {
+      "name": "building-icue-widgets",
+      "description": "Scaffold, build, debug, and package Corsair iCUE / Xeneon Edge widgets (QtWebEngine sandbox).",
+      "source": "./plugins/building-icue-widgets"
     }
   ]
 }

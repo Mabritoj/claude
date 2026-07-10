@@ -1,0 +1,21 @@
+{
+	"author": "Your Name",
+	"id": "com.you.mywidget",
+	"name": "My Widget",
+	"description": "Short description of what this widget displays.",
+	"version": "1.0.0",
+	"preview_icon": "resources/icon.svg",
+	"min_app_version": "5.47",
+	"min_framework_version": "1.0.0",
+	"os": [
+		{
+			"platform": "windows"
+		}
+	],
+	"supported_devices": [
+		{
+			"type": "dashboard_lcd"
+		}
+	],
+	"interactive": false
+}

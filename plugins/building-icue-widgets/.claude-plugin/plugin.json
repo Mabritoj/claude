@@ -1,0 +1,8 @@
+{
+  "name": "building-icue-widgets",
+  "description": "Scaffold, build, debug, and package Corsair iCUE / Xeneon Edge widgets (QtWebEngine sandbox): manifest.json, x-icue-property wiring, localhost bridge pattern, and packaging.",
+  "version": "0.1.0",
+  "author": {
+    "name": "IronBEAR"
+  }
+}
