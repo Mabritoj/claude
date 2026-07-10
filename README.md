@@ -6,18 +6,19 @@ installable plugin.
 
 ## Install
 
-Add this repo as a marketplace, then install whichever plugins you want:
+Add this repo as a marketplace once, then install whichever plugins you want:
 
 ```bash
-claude plugin marketplace add /path/to/this/repo
-claude plugin install <plugin-name>@ironbear-plugins
+claude plugin marketplace add https://github.com/Mabritoj/claude
 ```
+
+Then run the install command for whichever plugin you want from the table below.
 
 ## Plugins
 
-| Plugin | Description | Contents |
-|---|---|---|
-| [`aws-sam`](plugins/aws-sam) | Scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects using Node.js/TypeScript conventions. | Skill |
+| Plugin | Description | Contents | Install |
+|---|---|---|---|
+| [`aws-sam`](plugins/aws-sam) | Scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects using Node.js/TypeScript conventions. | Skill | `claude plugin install aws-sam@ironbear-plugins` |
 
 `plugins/_template/` is also present but is a starter scaffold, not an
 installable plugin — see [Adding a new plugin](#adding-a-new-plugin).
@@ -52,6 +53,7 @@ Each plugin only includes the subfolders it actually needs.
      "source": "./plugins/<new-plugin-name>"
    }
    ```
-4. Add a row for it to the [Plugins](#plugins) table above.
+4. Add a row for it to the [Plugins](#plugins) table above, including
+   its install command: `claude plugin install <new-plugin-name>@ironbear-plugins`
 5. Validate: `claude plugin validate plugins/<new-plugin-name> --strict`
 6. Commit.
