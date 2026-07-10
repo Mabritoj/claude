@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ironbear-plugins",
-  "description": "IronBEAR's personal Claude Code plugin marketplace: skills, agents, commands, hooks, and MCP configs.",
+  "description": "IronBEAR's Claude Code plugin marketplace: skills, agents, commands, hooks, and MCP configs.",
   "owner": {
     "name": "IronBEAR"
   },
   "plugins": [
     {
       "name": "aws-sam",
-      "description": "Guidance for scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects using Jonathan's Node.js/TypeScript conventions.",
+      "description": "Guidance for scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects.",
       "source": "./plugins/aws-sam"
     }
   ]

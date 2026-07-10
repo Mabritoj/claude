@@ -1,6 +1,6 @@
 # ironbear-plugins
 
-Personal Claude Code plugin marketplace: skills, agents, slash
+Claude Code plugin marketplace: skills, agents, slash
 commands, hooks, and MCP server configs, each packaged as its own
 installable plugin.
 

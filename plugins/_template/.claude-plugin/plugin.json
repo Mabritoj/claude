@@ -3,7 +3,6 @@
   "description": "Starter scaffold for creating new plugins in this marketplace. Not a real plugin: copy this directory, rename it, and fill in the pieces you need.",
   "version": "0.1.0",
   "author": {
-    "name": "Jonathan Mabrito",
-    "email": "mabritoj@gmail.com"
+    "name": "IronBEAR"
   }
 }
