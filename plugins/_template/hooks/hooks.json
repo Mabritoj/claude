@@ -1,0 +1,16 @@
+{
+  "description": "Template hooks configuration - replace with real hooks, or delete this whole hooks/ directory if the plugin doesn't need any",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/example_hook.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
