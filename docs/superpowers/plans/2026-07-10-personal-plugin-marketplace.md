@@ -16,6 +16,8 @@
 - Every `plugin.json` includes `name`, `description`, `version`, and `author` (with email) so `claude plugin validate --strict` passes with zero warnings.
 - `.gitignore` excludes OS cruft and `*.local.md` / `*.local.json` (spec section "Documentation").
 - All manifest/content file formats (SKILL.md frontmatter, command frontmatter, agent frontmatter, hooks.json shape, .mcp.json shape) match the verified formats from Anthropic's own `claude-plugins-official` marketplace (`example-plugin` and `hookify`), inspected directly during design.
+- **All commands run from the implementer's own working directory (the task's checkout root) — never a hardcoded absolute path.** Every `claude plugin validate` / `claude plugin marketplace` command below uses a relative path (`.` for the repo root, `plugins/_template` for the template). If you are unsure what your working directory is, run `pwd` first and use paths relative to it — do not construct or reuse any absolute path from this document.
+- `marketplace.json`'s `plugins` array stays empty through Task 5 (migration of real plugins is explicitly out of scope — see "Post-plan follow-up"). `claude plugin validate` on the marketplace manifest will always report the warning `plugins: Marketplace has no plugins defined` in this plan's scope — that warning is expected and does not block any step. Only the *template plugin* (`plugins/_template`, fully under our control) is required to pass `--strict` with zero warnings; the marketplace-level check is run without `--strict` and is allowed to show that one specific warning.
 
 ---
 
@@ -29,7 +31,7 @@
 
 - [ ] **Step 1: Confirm no manifest exists yet**
 
-Run: `claude plugin validate "C:\Users\Jonathan\Documents\GitHub\claude"`
+Run (from the repo root): `claude plugin validate .`
 Expected output includes:
 ```
 ✘ Found 1 error:
@@ -48,6 +50,7 @@ Create `.claude-plugin/marketplace.json`:
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "jonathan-plugins",
+  "description": "Jonathan Mabrito's personal Claude Code plugin marketplace: skills, agents, commands, hooks, and MCP configs.",
   "owner": {
     "name": "Jonathan Mabrito",
     "email": "mabritoj@gmail.com"
@@ -58,12 +61,18 @@ Create `.claude-plugin/marketplace.json`:
 
 - [ ] **Step 3: Validate it passes**
 
-Run: `claude plugin validate "C:\Users\Jonathan\Documents\GitHub\claude" --strict`
+Run (from the repo root, no `--strict` — see Global Constraints on the empty `plugins` array): `claude plugin validate .`
 Expected output includes:
 ```
-Validating marketplace manifest: C:\Users\Jonathan\Documents\GitHub\claude\.claude-plugin\marketplace.json
+Validating marketplace manifest: .../.claude-plugin/marketplace.json
+
+⚠ Found 1 warning:
+
+  ❯ plugins: Marketplace has no plugins defined
+
+✔ Validation passed with warnings
 ```
-and ends with a pass message (no `✘`). Expected exit code: `0`
+Expected exit code: `0`. Exactly one warning (the empty-plugins one) — if you see the "No marketplace description provided" warning too, the `description` field from Step 2 is missing or misspelled.
 
 - [ ] **Step 4: Commit**
 
@@ -86,7 +95,7 @@ git commit -m "Add marketplace manifest"
 
 - [ ] **Step 1: Confirm no manifest exists yet**
 
-Run: `claude plugin validate "C:\Users\Jonathan\Documents\GitHub\claude\plugins\_template"`
+Run (from the repo root): `claude plugin validate plugins/_template`
 Expected output includes:
 ```
 ✘ Found 1 error:
@@ -145,10 +154,10 @@ Not a real plugin — a starter scaffold for creating new ones.
 
 - [ ] **Step 4: Validate it passes**
 
-Run: `claude plugin validate "C:\Users\Jonathan\Documents\GitHub\claude\plugins\_template" --strict`
+Run (from the repo root): `claude plugin validate plugins/_template --strict`
 Expected output includes:
 ```
-Validating plugin manifest: ...plugins\_template\.claude-plugin\plugin.json
+Validating plugin manifest: .../plugins/_template/.claude-plugin/plugin.json
 ```
 and ends with a pass message with zero warnings (since `version` and `author` are both present). Expected exit code: `0`
 
@@ -275,7 +284,7 @@ Create `plugins/_template/.mcp.json`:
 
 - [ ] **Step 6: Confirm the manifest still validates cleanly**
 
-Run: `claude plugin validate "C:\Users\Jonathan\Documents\GitHub\claude\plugins\_template" --strict`
+Run (from the repo root): `claude plugin validate plugins/_template --strict`
 Expected: same pass output as Task 2 Step 4 (adding content files must not introduce validation errors). Expected exit code: `0`
 
 - [ ] **Step 7: Confirm the JSON files are syntactically valid**
@@ -393,18 +402,18 @@ git commit -m "Add root README and gitignore"
 - Consumes: `.claude-plugin/marketplace.json` (Task 1) and `plugins/_template` (Tasks 2-3).
 - Produces: confirmation that Claude Code itself (not just schema validation) accepts this repo as a marketplace.
 
-- [ ] **Step 1: Full strict validation sweep**
+- [ ] **Step 1: Full validation sweep**
 
-Run:
+Run (from the repo root):
 ```bash
-claude plugin validate "C:\Users\Jonathan\Documents\GitHub\claude" --strict
-claude plugin validate "C:\Users\Jonathan\Documents\GitHub\claude\plugins\_template" --strict
+claude plugin validate .
+claude plugin validate plugins/_template --strict
 ```
-Expected: both pass with exit code `0` and no `✘` in the output.
+Expected: the first command passes with exit `0` and exactly one warning (`plugins: Marketplace has no plugins defined` — expected per Global Constraints). The second passes with exit `0` and zero warnings. Neither shows a `✘`.
 
 - [ ] **Step 2: Register the repo as a live marketplace**
 
-Run: `claude plugin marketplace add "C:\Users\Jonathan\Documents\GitHub\claude"`
+Run (from the repo root): `claude plugin marketplace add .`
 Expected: a success message confirming the `jonathan-plugins` marketplace was added. Expected exit code: `0`
 
 - [ ] **Step 3: Confirm it's listed**
