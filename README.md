@@ -19,6 +19,7 @@ Then run the install command for whichever plugin you want from the table below.
 | Plugin | Description | Contents | Install |
 |---|---|---|---|
 | [`aws-sam`](plugins/aws-sam) | Scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects using Node.js/TypeScript conventions. | Skill | `claude plugin install aws-sam@ironbear-plugins` |
+| [`building-icue-widgets`](plugins/building-icue-widgets) | Scaffold, build, debug, and package Corsair iCUE / Xeneon Edge widgets (QtWebEngine sandbox). | Skill | `claude plugin install building-icue-widgets@ironbear-plugins` |
 
 `plugins/_template/` is also present but is a starter scaffold, not an
 installable plugin — see [Adding a new plugin](#adding-a-new-plugin).

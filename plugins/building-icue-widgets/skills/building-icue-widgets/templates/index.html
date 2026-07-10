@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>tr('My Widget')</title>
+		<link rel="icon" type="image/svg+xml" href="resources/icon.svg">
+		<link rel="stylesheet" href="styles/style.css">
+
+		<!-- User-configurable properties (injected as global JS variables by iCUE) -->
+		<meta
+			name="x-icue-property"
+			content="bridgePort"
+			data-label="tr('Bridge Port')"
+			data-type="textfield"
+			data-default="'37650'"
+		>
+		<meta
+			name="x-icue-property"
+			content="pollSeconds"
+			data-label="tr('Poll Interval (seconds)')"
+			data-type="textfield"
+			data-default="'60'"
+		>
+		<meta
+			name="x-icue-property"
+			content="accentColor"
+			data-label="tr('Accent Color')"
+			data-type="color"
+			data-default="'#4C8BF5'"
+		>
+		<meta
+			name="x-icue-property"
+			content="textColor"
+			data-label="tr('Text Color')"
+			data-type="color"
+			data-default="'#F5F4F2'"
+		>
+		<meta
+			name="x-icue-property"
+			content="backgroundColor"
+			data-label="tr('Background Color')"
+			data-type="color"
+			data-default="'#1B1A19'"
+		>
+
+		<script type="application/json" id="x-icue-groups">
+			[
+				{ "title": "tr('Connection')", "properties": ["bridgePort", "pollSeconds"], "info": "tr('Port and poll interval for the local bridge.')" },
+				{ "title": "tr('Appearance')", "properties": ["accentColor", "textColor", "backgroundColor"] }
+			]
+		</script>
+	</head>
+	<body>
+		<div id="widget" class="widget">
+			<header class="head">
+				<span class="brand-name">My Widget</span>
+				<span id="status-dot" class="status-dot" title=""></span>
+			</header>
+
+			<main id="rows" class="rows">
+				<!-- rows injected by widget.js -->
+			</main>
+
+			<footer id="footer" class="foot">
+				<span id="updated" class="updated"></span>
+			</footer>
+
+			<div id="message" class="message hidden"></div>
+		</div>
+
+		<script>
+			window.icueEvents = {
+				onICUEInitialized: function () {
+					if (window.MyWidget) window.MyWidget.start();
+				},
+				onDataUpdated: function () {
+					if (window.MyWidget) window.MyWidget.onDataUpdated();
+				},
+			};
+		</script>
+		<script src="scripts/widget.js"></script>
+	</body>
+</html>

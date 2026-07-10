@@ -1,0 +1,15 @@
+{
+	"en": {
+		"translation": {
+			"My Widget": "My Widget",
+			"Connection": "Connection",
+			"Appearance": "Appearance",
+			"Bridge Port": "Bridge Port",
+			"Poll Interval (seconds)": "Poll Interval (seconds)",
+			"Accent Color": "Accent Color",
+			"Text Color": "Text Color",
+			"Background Color": "Background Color",
+			"Port and poll interval for the local bridge.": "Port and poll interval for the local bridge."
+		}
+	}
+}

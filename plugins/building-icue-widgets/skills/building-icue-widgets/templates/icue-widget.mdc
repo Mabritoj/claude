@@ -1,0 +1,37 @@
+---
+description: iCUE widget non-negotiables — property globals, HTML parser, lifecycle
+globs: widget/**,**/*.icuewidget,**/manifest.json
+alwaysApply: false
+---
+
+# iCUE Widget Rules
+
+For the full build/debug workflow, use the `building-icue-widgets` skill.
+
+## Property names become globals
+
+Every `x-icue-property` `content` value is injected as `var <name>`. Never declare a JS identifier with the same name.
+
+```javascript
+// BAD — pollSeconds is a property name → SyntaxError → blank widget
+function pollSeconds() { ... }
+
+// GOOD
+function getPollSeconds() { return parseInt(prop("pollSeconds"), 10) || 60; }
+function prop(name) { return window[name] || DEFAULTS[name]; }
+```
+
+## Strict HTML (iCUE importer > CLI validator)
+
+- `<!DOCTYPE html>` uppercase
+- No self-closing void tags: `<meta ...>` not `<meta ... />`
+- Real `<title>` and viewport meta required
+
+## Lifecycle
+
+- `start()` must be idempotent and run on `DOMContentLoaded`
+- Do not gate rendering on `iCUE_initialized` or wait for `onICUEInitialized`
+
+## Sizing
+
+- Use `rem` + JS `fitFont()` with `ResizeObserver`; avoid `vh`/`vw` clamps on Xeneon Edge tiles
