@@ -1,0 +1,9 @@
+{
+  "name": "aws-sam",
+  "description": "Guidance for scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects using Jonathan's Node.js/TypeScript conventions: project structure, Lambda handler standards, and template.yaml review.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jonathan Mabrito",
+    "email": "mabritoj@gmail.com"
+  }
+}
