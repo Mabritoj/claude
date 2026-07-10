@@ -1,10 +1,9 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ironbear-plugins",
-  "description": "Jonathan Mabrito's personal Claude Code plugin marketplace: skills, agents, commands, hooks, and MCP configs.",
+  "description": "IronBEAR's personal Claude Code plugin marketplace: skills, agents, commands, hooks, and MCP configs.",
   "owner": {
-    "name": "Jonathan Mabrito",
-    "email": "mabritoj@gmail.com"
+    "name": "IronBEAR"
   },
   "plugins": [
     {
