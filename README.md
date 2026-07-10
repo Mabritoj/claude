@@ -1,4 +1,4 @@
-# jonathan-plugins
+# ironbear-plugins
 
 Personal Claude Code plugin marketplace: skills, agents, slash
 commands, hooks, and MCP server configs, each packaged as its own
@@ -10,8 +10,17 @@ Add this repo as a marketplace, then install whichever plugins you want:
 
 ```bash
 claude plugin marketplace add /path/to/this/repo
-claude plugin install <plugin-name>@jonathan-plugins
+claude plugin install <plugin-name>@ironbear-plugins
 ```
+
+## Plugins
+
+| Plugin | Description | Contents |
+|---|---|---|
+| [`aws-sam`](plugins/aws-sam) | Scaffolding, writing, and reviewing AWS SAM (Serverless Application Model) projects using Node.js/TypeScript conventions. | Skill |
+
+`plugins/_template/` is also present but is a starter scaffold, not an
+installable plugin — see [Adding a new plugin](#adding-a-new-plugin).
 
 ## Repo layout
 
@@ -43,5 +52,6 @@ Each plugin only includes the subfolders it actually needs.
      "source": "./plugins/<new-plugin-name>"
    }
    ```
-4. Validate: `claude plugin validate plugins/<new-plugin-name> --strict`
-5. Commit.
+4. Add a row for it to the [Plugins](#plugins) table above.
+5. Validate: `claude plugin validate plugins/<new-plugin-name> --strict`
+6. Commit.
